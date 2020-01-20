@@ -1,0 +1,58 @@
+[debug] [2020-01-20T17:51:33.122Z] ----------------------------------------------------------------------
+[debug] [2020-01-20T17:51:33.163Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\ADMIN-PC\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2020-01-20T17:51:33.163Z] CLI Version:   7.12.1
+[debug] [2020-01-20T17:51:33.163Z] Platform:      win32
+[debug] [2020-01-20T17:51:33.163Z] Node Version:  v12.14.0
+[debug] [2020-01-20T17:51:33.313Z] Time:          Mon Jan 20 2020 23:21:33 GMT+0530 (India Standard Time)
+[debug] [2020-01-20T17:51:33.314Z] ----------------------------------------------------------------------
+[debug] [2020-01-20T17:51:33.314Z] 
+[debug] [2020-01-20T17:51:33.431Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-01-20T17:51:33.448Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\ADMIN-PC\Desktop\Project_1
+
+Before we get started, keep in mind:
+
+  * You are initializing in an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  .firebaserc already has a default project, using project1-fde63.
+[debug] [2020-01-20T17:52:05.934Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/project1-fde63  
+ 
+[debug] [2020-01-20T17:52:06.937Z] <<< HTTP RESPONSE 200
+[info] 
+=== Functions Setup
+[info] 
+[info] A functions directory will be created in your project with a Node.js
+[info] package pre-configured. Functions can be deployed with firebase deploy.
+[info] 
+[debug] [2020-01-20T17:52:06.976Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-01-20T17:52:06.982Z] > authorizing via signed-in user
+[debug] [2020-01-20T17:52:06.982Z] [iam] checking project project1-fde63 for permissions ["firebase.projects.get"]
+[debug] [2020-01-20T17:52:06.984Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/project1-fde63:testIamPermissions  
+
+[debug] [2020-01-20T17:52:08.846Z] <<< HTTP RESPONSE 200
+[debug] [2020-01-20T17:52:08.850Z] >>> HTTP REQUEST POST https://serviceusage.googleapis.com/v1/projects/project1-fde63/services/cloudfunctions.googleapis.com:enable  
+ 
+[debug] [2020-01-20T17:52:08.852Z] >>> HTTP REQUEST POST https://serviceusage.googleapis.com/v1/projects/project1-fde63/services/runtimeconfig.googleapis.com:enable  
+ 
+[debug] [2020-01-20T17:52:10.926Z] <<< HTTP RESPONSE 200
+[debug] [2020-01-20T17:52:10.954Z] <<< HTTP RESPONSE 200
+[info] +  Wrote functions/package.json
+[info] +  Wrote functions/.eslintrc.json
+[info] +  Wrote functions/index.js
+[info] +  Wrote functions/.gitignore

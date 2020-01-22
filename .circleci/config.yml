@@ -1,76 +1,34 @@
-version: 2.1
-orbs:
-  eslint: arrai/eslint@1.3.0
+version: 2
 jobs:
-  eslint:
-    parameters:
-      wd:
-        type: string
-        default: ~/project
-      files:
-        type: string
-        default: lib/**
-      executor:
-        type: executor
-        default: v8
-      config:
-        description: "Any additional configuration steps."
-        type: steps
-        default: []
-    executor: <<parameters.executor>>
+  build:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/node:8-browsers
     steps:
       - checkout
-      - utils/add_ssh_config
+      - restore_cache:
+          keys:
+            - v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
+            - v1-deps-{{ .Branch }}
+            - v1-deps
       - run:
-          name: Install additional OS packages
-          command: sudo apt-get install rsync
+          name: Install dependencies
+          command: npm install
+      - save_cache:
+          key: v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+            - ~/.npm
+            - ~/.cache
       - run:
-          name: Install the latest eslint
-          command: sudo npm install -g eslint
-      - steps: <<parameters.config>>
-      - run:
-          name: Run eslint
-          command: |
-            cd <<parameters.wd>>
-            eslint --color <<parameters.files>> | tee ~/lint
-      - utils/make_status_shield:
-          when: on_fail
-          status: errors
-          color: red
-          logo: eslint
-      - run:
-          name: Check if we had any warnings
-          when: always
-          command: test ! -s ~/lint
-      - utils/make_status_shield:
-          when: always
-          status: warnings
-          color: orange
-          logo: eslint
-          preserve: true
-      - utils/make_status_shield:
-          when: on_success
-          status: passed
-          color: brightgreen
-          logo: eslint
-      - utils/rsync_file:
-          when: always
-          file: ~/status.svg
-          remote_file: $CIRCLE_BRANCH.$CIRCLE_JOB.svg
-          host: docs
-executors:
-  v8:
-    environment:
-        LANG: en_US.UTF-8
-    docker:
-     - image: circleci/node:8-buster
-  v10:
-    environment:
-        LANG: en_US.UTF-8
-    docker:
-     - image: circleci/node:10-buster
-  v12:
-    environment:
-        LANG: en_US.UTF-8
-    docker:
-     - image: circleci/node:12-buster
+          name: Build
+          command: npm run build:client:prod
+
+workflows:
+  version: 2
+  build_and_activate:
+    jobs:
+      - build,
+      run:
+          name: Lint
+          command: npm run lint

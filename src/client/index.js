@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
+import BasicGame from './BasicGame';
 
 class App extends Component {
   render() {
-    return <h1>my</h1>;
+    return <div>
+      <BasicGame />
+      <BasicGame />
+    </div>;
   }
 }
-
 render(<App />, document.getElementById('root'));
